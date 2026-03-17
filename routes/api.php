@@ -15,18 +15,18 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register' , [AuthController::class , 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/showAllStores', [StoreController::class, 'showAllStores']);
-Route::get('/showProducts/{store_id}', [ProductController::class, 'showStoreProduct']);
-Route::get('/showProductDetails/{product_id}', [ProductController::class, 'showProductDetails']);
+// Route::get('/showProducts/{store_id}', [ProductController::class, 'showStoreProduct']);
+// Route::get('/showProductDetails/{product_id}', [ProductController::class, 'showProductDetails']);
+
+
+//search product & stores
+Route::get('search/product', [ProductController::class, 'productSearch']);
+Route::get('search/store', [StoreController::class, 'storeSearch']);
 
 //Reset password
 Route::post('Password/forget', [AuthController::class, 'forgetPassword']);
 Route::post('Password/verifyOtp', [AuthController::class, 'verifyOtp']);
 Route::post('Password/resetPassword', [AuthController::class, 'resetPassword']);
-
-//search product & stores
-Route::get('search/product', [ProductController::class, 'productSearch']);
-Route::get('search/store', [StoreController::class, 'storeSearch']);
 
 Route::post('/createStore', [StoreController::class, 'createStore']);
 
@@ -34,6 +34,8 @@ Route::post('/createStore', [StoreController::class, 'createStore']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::patch('/Profile', [ProfileController::class, 'updateUserProfile']);
-   
+
+
+    Route::get('/showAllStores', [StoreController::class, 'showAllStores']);
 });
 

@@ -18,6 +18,8 @@ class StoreController extends Controller
 //----------------------------------------------------------------------------------------------
     public function showAllStores()
     {
+        $this->authorize('viewAny', Store::class);
+      
         $stores = $this->storesService->showAllStores();
 
         if($stores->isEmpty()){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Store;
 use App\Services\ProductService;
 use App\Trait\Response;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -18,6 +19,7 @@ class ProductController extends Controller
 //-----------------------------------------------------------------------------------------------
     public function showStoreProduct($store_id) 
     {
+        //$this->authorize('view', Store::class);
         $products =  $this->productsSer->showAllProduct($store_id);
 
         if ($products->isEmpty()) {
