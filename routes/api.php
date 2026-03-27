@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Customer\AuthController;
 use App\Http\Controllers\Customer\ProfileController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +37,22 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::patch('/Profile', [ProfileController::class, 'updateUserProfile']);
 
+    Route::post('/createOrder', [OrderItemController::class, 'createOrder']);
 
     Route::get('/showAllStores', [StoreController::class, 'showAllStores']);
+
+
+
+
+    Route::get('/notifications', [NotificationController::class, 'showAllNotifications']);
+    Route::get('/notifications/unread', [NotificationController::class, 'showUnReadNotifications']);
+    Route::get('/notifications/unread-count', [NotificationController::class, 'showCountUnReadNotifications']);
+    Route::get('/notifications/{id}', [NotificationController::class, 'showNotificationDetails']);
+
+    Route::put('/notifications/read-all', [NotificationController::class, 'makeAllAsRead']);
+    Route::put('/notifications/{id}/read', [NotificationController::class, 'makeAsRead']);
+
+    Route::delete('/notifications/{id}', [NotificationController::class, 'deleteNotification']);
+    Route::delete('/notifications', [NotificationController::class, 'deleteAll']);
 });
 
