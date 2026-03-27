@@ -48,5 +48,10 @@ class DefaultUserSeeder extends Seeder
             'phone_number' => '0000000000'
         ]);
         $user->assignRole('User');
+
+
+        User::factory(10)->create()->each(function ($user) {
+            $user->assignRole('User');
+        });
     }
 }

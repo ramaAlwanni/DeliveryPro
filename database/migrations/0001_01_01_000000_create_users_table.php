@@ -18,7 +18,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone_number');
-           // $table->string('role')->default('User');
             $table->string('image')->nullable();
             $table->longText('location')->nullable();
             $table->string('otp')->nullable();
